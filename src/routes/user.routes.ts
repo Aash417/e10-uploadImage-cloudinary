@@ -1,11 +1,11 @@
 import { Router } from 'express';
+import { test, uploadImage } from '../controllers/user.controller';
 import { upload } from '../middlewares/multer.middleware';
-import { test, uploadImage } from './../controllers/user.controller';
 
 const router = Router();
 
 router
-  .route('/upload')
+  .route('/uploadImage')
   .get(test)
   .post(
     upload.fields([
