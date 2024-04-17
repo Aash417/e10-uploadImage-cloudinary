@@ -1,8 +1,20 @@
 import { Router } from 'express';
-import { test } from './../controllers/user.controller';
+import { upload } from '../middlewares/multer.middleware';
+import { test, uploadImage } from './../controllers/user.controller';
 
-const router  = Router();
+const router = Router();
 
-router.route('/upload').get(test);
+router
+  .route('/upload')
+  .get(test)
+  .post(
+    upload.fields([
+      {
+        name: 'image',
+        maxCount: 1,
+      },
+    ]),
+    uploadImage
+  );
 
 export default router;
